@@ -15,6 +15,15 @@ deploy:
   on:
     tags: true
 
+# deploy:
+#   provider: pages
+#   skip_cleanup: true
+#   # Set in the settings page of your repository, as a secure variable
+#   github_token: $GITHUB_TOKEN
+#   keep_history: true
+#   on:
+#     branch: github_page
+
 script:
   - pip install flake8
   - flake8 substra

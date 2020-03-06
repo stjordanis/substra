@@ -1,4 +1,4 @@
-.PHONY: pyclean doc test
+.PHONY: pyclean doc test html
 
 pyclean:
 	find . -type f -name "*.py[co]" -delete
@@ -11,3 +11,7 @@ doc:
 
 test: pyclean
 	python setup.py test
+
+html:
+	echo "in makefile / html"
+	sphinx-build -b html -d _build/doctrees . _build/html
