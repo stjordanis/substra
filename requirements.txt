@@ -1,1 +1,5 @@
 pydoc-markdown==2.0.5
+sphinx-rtd-theme==0.4.3
+sphinx==2.4.1
+recommonmark==0.6.0
+sphinx-markdown-tables==0.0.12

@@ -11,8 +11,8 @@ Welcome to Substra's documentation!
    :caption: Contents:
 
    README
-   docs/local_install_skaffold
-
+   local_install_skaffold
+   add_data_samples
 
 Indices and tables
 ==================
