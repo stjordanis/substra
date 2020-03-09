@@ -14,7 +14,9 @@ import sphinx_rtd_theme
 
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('.'))
+sys.path.append(os.path.abspath('../substra/'))
 
 # -- Project information -----------------------------------------------------
 
@@ -68,8 +70,8 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# Custom Favicon
-html_favicon = '_static/favicon.ico'
-
 # Custom CSS
 html_css_files = ['custom.css']
+
+# Custom Favicon
+html_favicon = '_static/favicon.ico'

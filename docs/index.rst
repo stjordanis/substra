@@ -14,6 +14,20 @@ Welcome to Substra's documentation!
    local_install_skaffold
    add_data_samples
 
+CLI Interface
+=============
+
+.. automodule:: cli.interface
+   :members:
+
+Runner Methods
+==============
+
+.. automethod:: runner::compute_train
+.. automethod:: runner::compute_test
+.. automethod:: runner::compute_perf
+.. automethod:: runner::compute
+
 Indices and tables
 ==================
 
