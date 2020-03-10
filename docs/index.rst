@@ -14,10 +14,28 @@ Welcome to Substra's documentation!
    local_install_skaffold
    add_data_samples
 
+1. Installation
+===============
+
+2. Running the Substra platform locally
+=======================================
+
+3. Usage
+========
+
 CLI Interface
 =============
 
 .. automodule:: cli.interface
+   :members:
+
+SDK
+===
+
+.. automodule:: sdk.client
+   :members:
+
+.. autoclass:: sdk.client.Client
    :members:
 
 Runner Methods
