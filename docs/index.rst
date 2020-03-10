@@ -6,6 +6,13 @@
 Welcome to Substra's documentation!
 ===================================
 
+0. Extract from py file
+=======================
+
+.. literalinclude:: conf.py
+   :language: python
+   :lines: 36-43
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
