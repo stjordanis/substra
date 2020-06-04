@@ -35,11 +35,11 @@ def test_add_load_profile(tmpdir):
 def test_add_load_profile_from_file(tmpdir):
     path = tmpdir / 'substra.cfg'
     conf = {
-       "node-1": {
-           "insecure": False,
-           "url": "http://substra-backend.node-1.com",
-           "version": "0.0"
-       },
+        "node-1": {
+            "insecure": False,
+            "url": "http://substra-backend.node-1.com",
+            "version": "0.0"
+        },
     }
 
     path.write_text(json.dumps(conf), "UTF-8")
@@ -85,10 +85,10 @@ def test_token_without_user_path(tmpdir):
     config_path.write_text(json.dumps(configuration.DEFAULT_CONFIG), "UTF-8")
 
     client = substra.Client(config_path=config_path, profile_name='default')
-    assert client._current_profile['token'] == ''
+    assert client._token == ''
 
     client = substra.Client(config_path=config_path, profile_name='default', token='foo')
-    assert client._current_profile['token'] == 'foo'
+    assert client._token == 'foo'
 
 
 def test_token_with_user_path(tmpdir):
@@ -99,8 +99,8 @@ def test_token_with_user_path(tmpdir):
     user_path.write_text(json.dumps({'token': 'foo'}), "UTF-8")
 
     client = substra.Client(config_path=config_path, profile_name='default', user_path=user_path)
-    assert client._current_profile['token'] == 'foo'
+    assert client._token == 'foo'
 
     client = substra.Client(config_path=config_path, profile_name='default', user_path=user_path,
                             token='bar')
-    assert client._current_profile['token'] == 'bar'
+    assert client._token == 'bar'
