@@ -22,13 +22,18 @@ import pydantic
 
 from substra.sdk import utils
 
+# TODO create a sub-package schemas:
+# types
+# inputs
+# outputs
+
 
 _SERVER_NAMES = {
     'dataset': 'data_manager',
 }
 
 
-class AssetType(enum.Enum):
+class Type(enum.Enum):
     Algo = 'algo'
     AggregateAlgo = 'aggregate_algo'
     CompositeAlgo = 'composite_algo'
@@ -47,6 +52,9 @@ class AssetType(enum.Enum):
         """Returns the name used to identify the asset on the backend."""
         name = self.value
         return _SERVER_NAMES.get(name, name)
+
+    def __str__(self):
+        return self.name
 
 
 class _Spec(pydantic.BaseModel, abc.ABC):
@@ -84,7 +92,7 @@ class DataSampleSpec(_Spec):
     test_only: bool
     data_manager_keys: typing.List[str]
 
-    type_: typing.ClassVar[AssetType] = AssetType.DataSample
+    type_: typing.ClassVar[Type] = Type.DataSample
 
     def is_many(self):
         return self.paths and len(self.paths) > 0
@@ -117,7 +125,7 @@ class DatasetSpec(_Spec):
     permissions: Permissions
     objective_key: Optional[str]
 
-    type_: typing.ClassVar[AssetType] = AssetType.Dataset
+    type_: typing.ClassVar[Type] = Type.Dataset
 
     class Meta:
         file_attributes = ('data_opener', 'description', )
@@ -132,7 +140,7 @@ class ObjectiveSpec(_Spec):
     test_data_manager_key: Optional[str]
     permissions: Permissions
 
-    type_: typing.ClassVar[AssetType] = AssetType.Objective
+    type_: typing.ClassVar[Type] = Type.Objective
 
     class Meta:
         file_attributes = ('metrics', 'description', )
@@ -149,15 +157,15 @@ class _AlgoSpec(_Spec):
 
 
 class AlgoSpec(_AlgoSpec):
-    type_: typing.ClassVar[AssetType] = AssetType.Algo
+    type_: typing.ClassVar[Type] = Type.Algo
 
 
 class AggregateAlgoSpec(_AlgoSpec):
-    type_: typing.ClassVar[AssetType] = AssetType.AggregateAlgo
+    type_: typing.ClassVar[Type] = Type.AggregateAlgo
 
 
 class CompositeAlgoSpec(_AlgoSpec):
-    type_: typing.ClassVar[AssetType] = AssetType.CompositeAlgo
+    type_: typing.ClassVar[Type] = Type.CompositeAlgo
 
 
 class TraintupleSpec(_Spec):
@@ -169,7 +177,7 @@ class TraintupleSpec(_Spec):
     compute_plan_id: Optional[str]
     rank: Optional[int]
 
-    type_: typing.ClassVar[AssetType] = AssetType.Traintuple
+    type_: typing.ClassVar[Type] = Type.Traintuple
 
 
 class AggregatetupleSpec(_Spec):
@@ -180,7 +188,7 @@ class AggregatetupleSpec(_Spec):
     compute_plan_id: Optional[str]
     rank: Optional[int]
 
-    type_: typing.ClassVar[AssetType] = AssetType.Aggregatetuple
+    type_: typing.ClassVar[Type] = Type.Aggregatetuple
 
 
 class CompositeTraintupleSpec(_Spec):
@@ -194,7 +202,7 @@ class CompositeTraintupleSpec(_Spec):
     out_trunk_model_permissions: PrivatePermissions
     rank: Optional[int]
 
-    type_: typing.ClassVar[AssetType] = AssetType.CompositeTraintuple
+    type_: typing.ClassVar[Type] = Type.CompositeTraintuple
 
 
 class TesttupleSpec(_Spec):
@@ -204,7 +212,7 @@ class TesttupleSpec(_Spec):
     data_manager_key: Optional[str]
     test_data_sample_keys: Optional[List[str]]
 
-    type_: typing.ClassVar[AssetType] = AssetType.Testtuple
+    type_: typing.ClassVar[Type] = Type.Testtuple
 
 
 class ComputePlanTraintupleSpec(_Spec):
@@ -252,7 +260,7 @@ class ComputePlanSpec(_BaseComputePlanSpec):
     tag: str
     clean_models: bool
 
-    type_: typing.ClassVar[AssetType] = AssetType.ComputePlan
+    type_: typing.ClassVar[Type] = Type.ComputePlan
 
 
 class UpdateComputePlanSpec(_BaseComputePlanSpec):

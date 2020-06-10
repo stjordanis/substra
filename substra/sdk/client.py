@@ -502,112 +502,112 @@ class Client(object):
     @logit
     def get_algo(self, key):
         """Get algo by key."""
-        return self._backend.get(schemas.AssetType.Algo, key)
+        return self._backend.get(schemas.Type.Algo, key)
 
     @logit
     def get_compute_plan(self, key):
         """Get compute plan by key."""
-        return self._backend.get(schemas.AssetType.ComputePlan, key)
+        return self._backend.get(schemas.Type.ComputePlan, key)
 
     @logit
     def get_aggregate_algo(self, key):
         """Get aggregate algo by key."""
-        return self._backend.get(schemas.AssetType.AggregateAlgo, key)
+        return self._backend.get(schemas.Type.AggregateAlgo, key)
 
     @logit
     def get_composite_algo(self, key):
         """Get composite algo by key."""
-        return self._backend.get(schemas.AssetType.CompositeAlgo, key)
+        return self._backend.get(schemas.Type.CompositeAlgo, key)
 
     @logit
     def get_dataset(self, key):
         """Get dataset by key."""
-        return self._backend.get(schemas.AssetType.Dataset, key)
+        return self._backend.get(schemas.Type.Dataset, key)
 
     @logit
     def get_objective(self, key):
         """Get objective by key."""
-        return self._backend.get(schemas.AssetType.Objective, key)
+        return self._backend.get(schemas.Type.Objective, key)
 
     @logit
     def get_testtuple(self, key):
         """Get testtuple by key."""
-        return self._backend.get(schemas.AssetType.Testtuple, key)
+        return self._backend.get(schemas.Type.Testtuple, key)
 
     @logit
     def get_traintuple(self, key):
         """Get traintuple by key."""
-        return self._backend.get(schemas.AssetType.Traintuple, key)
+        return self._backend.get(schemas.Type.Traintuple, key)
 
     @logit
     def get_aggregatetuple(self, key):
         """Get aggregatetuple by key."""
-        return self._backend.get(schemas.AssetType.Aggregatetuple, key)
+        return self._backend.get(schemas.Type.Aggregatetuple, key)
 
     @logit
     def get_composite_traintuple(self, key):
         """Get composite traintuple by key."""
-        return self._backend.get(schemas.AssetType.CompositeTraintuple, key)
+        return self._backend.get(schemas.Type.CompositeTraintuple, key)
 
     @logit
     def list_algo(self, filters=None):
         """List algos."""
-        return self._backend.list(schemas.AssetType.Algo, filters)
+        return self._backend.list(schemas.Type.Algo, filters)
 
     @logit
     def list_compute_plan(self, filters=None):
         """List compute plans."""
-        return self._backend.list(schemas.AssetType.ComputePlan, filters)
+        return self._backend.list(schemas.Type.ComputePlan, filters)
 
     @logit
     def list_aggregate_algo(self, filters=None):
         """List aggregate algos."""
-        return self._backend.list(schemas.AssetType.AggregateAlgo, filters)
+        return self._backend.list(schemas.Type.AggregateAlgo, filters)
 
     @logit
     def list_composite_algo(self, filters=None):
         """List composite algos."""
-        return self._backend.list(schemas.AssetType.CompositeAlgo, filters)
+        return self._backend.list(schemas.Type.CompositeAlgo, filters)
 
     @logit
     def list_data_sample(self, filters=None):
         """List data samples."""
-        return self._backend.list(schemas.AssetType.DataSample, filters)
+        return self._backend.list(schemas.Type.DataSample, filters)
 
     @logit
     def list_dataset(self, filters=None):
         """List datasets."""
-        return self._backend.list(schemas.AssetType.Dataset, filters)
+        return self._backend.list(schemas.Type.Dataset, filters)
 
     @logit
     def list_objective(self, filters=None):
         """List objectives."""
-        return self._backend.list(schemas.AssetType.Objective, filters)
+        return self._backend.list(schemas.Type.Objective, filters)
 
     @logit
     def list_testtuple(self, filters=None):
         """List testtuples."""
-        return self._backend.list(schemas.AssetType.Testtuple, filters)
+        return self._backend.list(schemas.Type.Testtuple, filters)
 
     @logit
     def list_traintuple(self, filters=None):
         """List traintuples."""
-        return self._backend.list(schemas.AssetType.Traintuple, filters)
+        return self._backend.list(schemas.Type.Traintuple, filters)
 
     @logit
     def list_aggregatetuple(self, filters=None):
         """List aggregatetuples."""
-        return self._backend.list(schemas.AssetType.Aggregatetuple, filters)
+        return self._backend.list(schemas.Type.Aggregatetuple, filters)
 
     @logit
     def list_composite_traintuple(self, filters=None):
         """List composite traintuples."""
-        return self._backend.list(schemas.AssetType.CompositeTraintuple, filters)
+        return self._backend.list(schemas.Type.CompositeTraintuple, filters)
 
     @logit
     def list_node(self, *args, **kwargs):
         """List nodes."""
-        return self._backend.list(schemas.AssetType.Node)
+        return self._backend.list(schemas.Type.Node)
 
     @logit
     def update_compute_plan(self, compute_plan_id, data):
@@ -678,7 +678,7 @@ class Client(object):
         Download opener script in destination folder.
         """
         self._backend.download(
-            schemas.AssetType.Dataset,
+            schemas.Type.Dataset,
             'opener.storageAddress',
             key,
             os.path.join(destination_folder, 'opener.py'),
@@ -691,7 +691,7 @@ class Client(object):
         Download algo package in destination folder.
         """
         self._backend.download(
-            schemas.AssetType.Algo,
+            schemas.Type.Algo,
             'content.storageAddress',
             key,
             os.path.join(destination_folder, 'algo.tar.gz'),
@@ -704,7 +704,7 @@ class Client(object):
         Download aggregate algo package in destination folder.
         """
         self._backend.download(
-            schemas.AssetType.AggregateAlgo,
+            schemas.Type.AggregateAlgo,
             'content.storageAddress',
             key,
             os.path.join(destination_folder, 'aggregate_algo.tar.gz'),
@@ -717,7 +717,7 @@ class Client(object):
         Download composite algo package in destination folder.
         """
         self._backend.download(
-            schemas.AssetType.CompositeAlgo,
+            schemas.Type.CompositeAlgo,
             'content.storageAddress',
             key,
             os.path.join(destination_folder, 'composite_algo.tar.gz'),
@@ -730,7 +730,7 @@ class Client(object):
         Download metrics script in destination folder.
         """
         self._backend.download(
-            schemas.AssetType.Objective,
+            schemas.Type.Objective,
             'metrics.storageAddress',
             key,
             os.path.join(destination_folder, 'metrics.py'),
@@ -739,27 +739,27 @@ class Client(object):
     @logit
     def describe_algo(self, key):
         """Get algo description."""
-        return self._backend.describe(schemas.AssetType.Algo, key)
+        return self._backend.describe(schemas.Type.Algo, key)
 
     @logit
     def describe_aggregate_algo(self, key):
         """Get aggregate algo description."""
-        return self._backend.describe(schemas.AssetType.AggregateAlgo, key)
+        return self._backend.describe(schemas.Type.AggregateAlgo, key)
 
     @logit
     def describe_composite_algo(self, key):
         """Get composite algo description."""
-        return self._backend.describe(schemas.AssetType.CompositeAlgo, key)
+        return self._backend.describe(schemas.Type.CompositeAlgo, key)
 
     @logit
     def describe_dataset(self, key):
         """Get dataset description."""
-        return self._backend.describe(schemas.AssetType.Dataset, key)
+        return self._backend.describe(schemas.Type.Dataset, key)
 
     @logit
     def describe_objective(self, key):
         """Get objective description."""
-        return self._backend.describe(schemas.AssetType.Objective, key)
+        return self._backend.describe(schemas.Type.Objective, key)
 
     @logit
     def leaderboard(self, objective_key, sort='desc'):
