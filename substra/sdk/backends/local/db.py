@@ -16,6 +16,7 @@ import collections
 import logging
 
 from substra.sdk import exceptions
+from substra.sdk.backends.local import models
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,10 @@ class InMemoryDb:
     def add(self, asset, exist_ok=False):
         """Add an asset."""
         type_ = asset.__class__.type_
-        key = asset.key
+        if type_ == models.ComputePlan.type_:
+            key = asset.compute_plan_id
+        else:
+            key = asset.key
 
         if key in self._data[type_]:
             if not exist_ok:

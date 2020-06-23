@@ -38,7 +38,11 @@ def dataset_query(tmpdir):
         "data_opener": str(opener_path),
         "type": "images",
         "description": str(desc_path),
-        "objective_key": ""
+        "objective_key": "",
+        "permissions": {
+            "public": True,
+            "authorized_ids": [],
+        }
     }
 
 
@@ -56,7 +60,11 @@ def objective_query(tmpdir):
         "metrics_name": "name of the metics",
         "description": str(desc_path),
         "test_data_keys": [],
-        "test_data_sample_keys": []
+        "test_data_sample_keys": [],
+        "permissions": {
+            "public": True,
+            "authorized_ids": [],
+        }
     }
 
 
@@ -72,6 +80,10 @@ def algo_query(tmpdir):
         "name": "algo_name",
         "description": str(desc_path),
         "file": str(algo_file_path),
+        "permissions": {
+            "public": True,
+            "authorized_ids": [],
+        }
     }
 
 
