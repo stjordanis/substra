@@ -58,6 +58,10 @@ def _load_token_from_file(path=None):
 
 
 class Client(object):
+    """Create the client.
+
+    Set the `backend` to 'local' to use the local debugging.
+    """
 
     def __init__(self, config_path=None, profile_name=None, user_path=None,
                  token=None, retry_timeout=DEFAULT_RETRY_TIMEOUT, backend='remote'):

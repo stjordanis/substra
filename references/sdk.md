@@ -4,6 +4,9 @@
 ```python
 Client(self, config_path=None, profile_name=None, user_path=None, token=None, retry_timeout=300, backend='remote')
 ```
+Create the client.
+
+Set the `backend` to 'local' to use the local debugging.
 
 ## add_profile
 ```python
