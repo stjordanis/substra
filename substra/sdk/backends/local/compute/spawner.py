@@ -68,19 +68,22 @@ class DockerSpawner:
             user=_USER,
             userns_mode="host",
             detach=True,
+            tty=True,
+            stdin_open=True,
         )
 
         execution_logs = []
         for line in container.logs(stream=True, stdout=True, stderr=True):
-            execution_logs.append(line.decode('utf-8').strip())
+            execution_logs.append(line.decode('utf-8'))
 
         r = container.wait()
+        execution_logs = ''.join(execution_logs)
         exit_code = r['StatusCode']
         if exit_code != 0:
+            print(f"\n\nExecution logs: {execution_logs}")
             raise ExecutionError(f"Container '{name}' exited with status code '{exit_code}'")
 
         container.remove()
-
         return execution_logs
 
 
