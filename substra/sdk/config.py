@@ -96,7 +96,11 @@ def _load_profile(path, name):
         ProfileNotFoundError: if profile does not exist.
     """
     logger.debug(f"Loading profile '{name}' from '{path}'")
-    config = _read_config(path)
+    try:
+        config = _read_config(path)
+    except ConfigException:
+        config = copy.deepcopy(DEFAULT_CONFIG)
+
     try:
         return config[name]
     except KeyError:
