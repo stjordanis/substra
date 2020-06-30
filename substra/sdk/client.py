@@ -99,6 +99,12 @@ class Client(object):
             retry_timeout=self._retry_timeout,
         )
 
+    @staticmethod
+    def _get_spec(asset_type, data):
+        if isinstance(data, asset_type):
+            return data
+        return asset_type(**data)
+
     def add_profile(self, profile_name, url, version='0.0', insecure=False):
         """Set client parameters."""
         self._url = url
@@ -145,11 +151,11 @@ class Client(object):
         existing asset will be returned.
 
         """
-        if 'paths' in data:
+        spec = self._get_spec(schemas.DataSampleSpec, data)
+        if spec.paths:
             raise ValueError("data: invalid 'paths' field")
-        if 'path' not in data:
+        if not spec.path:
             raise ValueError("data: missing 'path' field")
-        spec = schemas.DataSampleSpec(**data)
         spec_options = {
             'local': local,
         }
@@ -182,11 +188,11 @@ class Client(object):
         If data samples with the same content as any of the paths already exists, an `AlreadyExists`
         exception will be raised.
         """
-        if 'path' in data:
+        spec = self._get_spec(schemas.DataSampleSpec, data)
+        if spec.path:
             raise ValueError("data: invalid 'path' field")
-        if 'paths' not in data:
+        if not spec.paths:
             raise ValueError("data: missing 'paths' field")
-        spec = schemas.DataSampleSpec(**data)
         spec_options = {
             'local': local,
         }
@@ -219,7 +225,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.DatasetSpec(**data)
+        spec = self._get_spec(schemas.DatasetSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -250,7 +256,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.ObjectiveSpec(**data)
+        spec = self._get_spec(schemas.ObjectiveSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -278,7 +284,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.AlgoSpec(**data)
+        spec = self._get_spec(schemas.AlgoSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -303,7 +309,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.AggregateAlgoSpec(**data)
+        spec = self._get_spec(schemas.AggregateAlgoSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -328,7 +334,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.CompositeAlgoSpec(**data)
+        spec = self._get_spec(schemas.CompositeAlgoSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -356,7 +362,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.TraintupleSpec(**data)
+        spec = self._get_spec(schemas.TraintupleSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -381,7 +387,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.AggregatetupleSpec(**data)
+        spec = self._get_spec(schemas.AggregatetupleSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -415,7 +421,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.CompositeTraintupleSpec(**data)
+        spec = self._get_spec(schemas.CompositeTraintupleSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -443,7 +449,7 @@ class Client(object):
         If `exist_ok` is true, `AlreadyExists` exceptions will be ignored and the
         existing asset will be returned.
         """
-        spec = schemas.TesttupleSpec(**data)
+        spec = self._get_spec(schemas.TesttupleSpec, data)
         return self._backend.add(spec, exist_ok=exist_ok)
 
     @logit
@@ -496,7 +502,7 @@ class Client(object):
         As specified in the data dict structure, output trunk models of composite
         traintuples cannot be made public.
         """
-        spec = schemas.ComputePlanSpec(**data)
+        spec = self._get_spec(schemas.ComputePlanSpec, data)
         return self._backend.add(spec)
 
     @logit
